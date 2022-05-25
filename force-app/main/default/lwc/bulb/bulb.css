@@ -1,0 +1,10 @@
+:host {
+    --pb-bulb-bg-color: #E2ECF1;
+    --pb-bulb-highlight-color: white;
+    --pb-bulb-neck-bg-color: #F1F2F2;
+    --pb-bulb-stroke-color: #38434A;
+}
+
+.bulb path {
+	transition: fill 2s;
+}
