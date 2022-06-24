@@ -1,0 +1,48 @@
+:host {
+    display: none;
+
+    --pb-color-blue: #0100AB;
+}
+
+:host.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: var(--pb-color-blue);
+    color: #fff;
+    z-index: 10;
+}
+
+a,
+a:visited {
+    color: #fff;
+}
+
+h1, h4 {
+    text-align: center;
+}
+
+h1 > span {
+    padding: 4px 8px;
+    background: #fff;
+    color: var(--pb-color-blue);
+}
+
+li {
+    display: flex;
+}
+
+li:before {
+    content: "*";
+    padding: 0 4px;
+  }
+
+.container {
+    max-width: 500px;
+}
