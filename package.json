@@ -1,0 +1,17 @@
+{
+  "name": "be-presentation",
+  "version": "1.0.0",
+  "description": "Asynchronous JavaScript Presentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Piotr Bokiej",
+  "devDependencies": {
+    "express": "^4.18.1",
+    "open": "^8.4.0",
+    "reveal.js": "^4.3.1"
+  },
+  "dependencies": {}
+}

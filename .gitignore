@@ -2,3 +2,4 @@ node_modules
 .sf
 .sfdx
 .vscode
+.localdevserver
