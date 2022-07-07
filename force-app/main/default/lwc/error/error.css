@@ -1,7 +1,7 @@
 :host {
     display: none;
 
-    --pb-color-blue: #0100AB;
+    /* --pb-color-blue: #0100AB; */
 }
 
 :host.show {
@@ -14,7 +14,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background: var(--pb-color-blue);
+    background: var(--pb-color-blue, #0100AB);
     color: #fff;
     z-index: 10;
 }
@@ -31,7 +31,7 @@ h1, h4 {
 h1 > span {
     padding: 4px 8px;
     background: #fff;
-    color: var(--pb-color-blue);
+    color: var(--pb-color-blue,#0100AB);
 }
 
 li {

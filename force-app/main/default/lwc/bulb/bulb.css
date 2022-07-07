@@ -4,11 +4,11 @@
     justify-content: center;
     width: 160px;
 
-    --pb-bulb-bg-color: #E2ECF1;
+    /* --pb-bulb-bg-color: #E2ECF1;
     --pb-bulb-highlight-color: white;
     --pb-bulb-neck-bg-color: #F1F2F2;
     --pb-bulb-stroke-color: #38434A;
-    --pb-bulb-timeout: 2s;
+    --pb-bulb-timeout: 2s; */
 }
 
 .time:empty,
@@ -19,7 +19,7 @@
 .time,
 .number {
     opacity: 1;
-    transition: opacity var(--pb-bulb-timeout)
+    transition: opacity var(--pb-bulb-timeout, 2s)
 }
 
 .time:after {
@@ -33,17 +33,17 @@
     font-size: 20px;
     text-align: center;
     width: 100px;
-    border: 5px solid var(--pb-bulb-stroke-color);
-    background: var(--pb-bulb-neck-bg-color);
+    border: 5px solid var(--pb-bulb-stroke-color, #38434A);
+    background: var(--pb-bulb-highlight-color, white);
 }
 
 .number {
     position: absolute;
     top: 32px;
     font-size: 55px;
-    color: var(--pb-bulb-highlight-color);
+    color: var(--pb-bulb-highlight-color, white);
 }
 
 .bulb path {
-	transition: fill var(--pb-bulb-timeout);
+	transition: fill var(--pb-bulb-timeout, 2s);
 }
