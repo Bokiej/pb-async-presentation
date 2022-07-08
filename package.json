@@ -9,9 +9,9 @@
   },
   "author": "Piotr Bokiej",
   "devDependencies": {
+    "animate.css": "^4.1.1",
     "express": "^4.18.1",
     "open": "^8.4.0",
     "reveal.js": "^4.3.1"
-  },
-  "dependencies": {}
+  }
 }
