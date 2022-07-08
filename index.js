@@ -19,14 +19,14 @@ app.get('/', (req, res) => {
 app.get('/next-branch', (req, res) => {
     exec('git checkout -', (error, stdout, stderr) => {
         if (error) {
-            console.log(`error: ${error.message}`);
-            return;
+            console.error(`error: ${error.message}`);
+            return res.status(500).send(error.message);
         }
         if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
+            console.error(`stderr: ${stderr}`);
+            return res.status(500).send(stderr);
         }
-        console.log(`stdout: ${stdout}`);
+        res.send(stdout);
     });
 });
 

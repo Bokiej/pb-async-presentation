@@ -15,3 +15,14 @@ Promise.all([body]).then(([body]) => {
         plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
     });
 })
+
+const nextBranch = () => {
+    fetch('/next-branch', { method: 'GET' }).then(res => {
+        if (res.ok) {
+            window.location.href = window.location.origin
+        }
+        throw res;
+    }).catch(error => {
+        console.error(error);
+    });
+}
