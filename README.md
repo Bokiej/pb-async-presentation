@@ -18,9 +18,11 @@ If error occures:
 Install node-gyp from command line:
 > npm install -g node-gyp
 
-Try to install lwc-dev-server again by writing first command from #4.
+Try to install lwc-dev-server again by writing first command from #5.
 
-You can start local serwer by choosing 'SFDX: Open Local Development Server' in vscode or write in command line:
+You can start local server by choosing 'SFDX: Open Local Development Server' in vscode or write in command line:
 >sfdx force:lightning:lwc:start
 
 and go to the http://localhost:3333/
+
+# Agenda
