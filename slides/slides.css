@@ -1,3 +1,39 @@
+:root {
+    --pb-orange-color: #ffd54f;
+    --r-heading-margin: 0 0 75px 0;
+    --r-heading3-size: 55px;
+}
+
+.pb-title {
+    display: inline-flex;
+    align-items: center;
+    text-align: left;
+    margin: 30px 0 0 0 !important;
+}
+
+.pb-title:before { 
+    content: 'JS';
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 64px;
+    height: 64px;
+    line-height: 30px;
+    font-size: 40px;
+    padding: 8px;
+    color: black;
+    margin-right: 20px;
+    background: var(--pb-orange-color);
+}
+
+.pb-text-30 {
+    font-size: 30px;
+}
+
+.pb-text-20 {
+    font-size: 20px;
+}
+
 .title {
     position: relative;
     font-size: 40px;
