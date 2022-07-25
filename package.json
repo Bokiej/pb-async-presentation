@@ -1,0 +1,19 @@
+{
+  "name": "pb-presentation",
+  "version": "1.0.0",
+  "description": "Asynchronous JavaScript Presentation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "serve": "sfdx force:lightning:lwc:start"
+  },
+  "author": "Piotr Bokiej",
+  "devDependencies": {
+    "animate.css": "^4.1.1",
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
+    "open": "^8.4.0",
+    "reveal.js": "^4.3.1"
+  }
+}
