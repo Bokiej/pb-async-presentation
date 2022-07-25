@@ -3,12 +3,15 @@
     position: relative;
     justify-content: center;
     width: 160px;
+    margin-bottom: 80px;
 
-    /* --pb-bulb-bg-color: #E2ECF1;
+    /* variables doesn't work in local dev server
+    --pb-bulb-bg-color: #E2ECF1;
     --pb-bulb-highlight-color: white;
     --pb-bulb-neck-bg-color: #F1F2F2;
     --pb-bulb-stroke-color: #38434A;
-    --pb-bulb-timeout: 2s; */
+    --pb-bulb-timeout: 2s;
+    */
 }
 
 .time:empty,
