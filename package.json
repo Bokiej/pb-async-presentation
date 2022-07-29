@@ -4,7 +4,8 @@
   "description": "Asynchronous JavaScript Presentation",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "serve": "sfdx force:lightning:lwc:start"
   },
   "author": "Piotr Bokiej",
   "devDependencies": {
