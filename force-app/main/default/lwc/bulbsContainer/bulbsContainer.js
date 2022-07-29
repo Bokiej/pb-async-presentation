@@ -4,58 +4,27 @@ import { showError } from 'c/utility';
 import lightBulb from 'c/utility'; // here goes Apex callback
 
 export default class BulbsContainer extends LightningElement {
-    YELLOW = { name: 'yellow', color: '#FFEE58' };
-    RED = { name: 'red', color: '#FF7043' };
-    GREEN = { name: 'green', color: '#66BB6A' };
-    BLUE = { name: 'blue', color: '#4FC3F7' }; 
 
     connectedCallback() {
-        lightBulb({ ...this.YELLOW }).then(data =>
+        lightBulb({ name: 'yellow', color: '#FFEE58' }).then(data =>
+            // destructuring, adding name and color values
+            // in place of ...data
             setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
+        ).then(bulb => {
+            // if you use curly braces remember to use return
+            // statement for returned value
+            return setBulbTime(bulb);
+        }).then(bulb =>
+            // but if you removed curly braces statement will be 
+            // automatically returned
+            // in such case do not use ; at the end
             setBulbCounter(bulb)
         ).then(bulb =>
             showBulbNumber(bulb)
         ).catch(error => {
             showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.RED }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.GREEN }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.BLUE }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
+        }).finally(() => {
+            console.log('everything is done');
         });
     }
 }
