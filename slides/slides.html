@@ -1,11 +1,54 @@
 <div class="reveal">
     <div class="slides">
-        <section>
-            <span class="animate__animated animate__flash animate__infinite">Slide 1</span>
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>How single bulb works in project?</h2>
         </section>
         <section>
-            <div>Slide 2</div>
-            <button onclick="nextBranch('async-1-1')">next</button>
+            <h3 class="pb-title">bulbsContainer component</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js bulbs-container-js-full" data-trim data-line-numbers="|8-29|4|3|2"></code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    <b>bulbsContainer</b> is component where all bulbs will be rendered. For now there is only one bulb inside to introduce all methods used to show bulbs features. Methos are imported from bulbUtilities.js file inside js inner directory of bulbsContainer component.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">Names of bulb methods</h3>
+            <section>
+                <img src="/slides/img/bulb_info.svg" width="460px" height="460px" alt="Bulb info">
+            </section>
+            <section>
+                <p>Methods in below slide will be invoked for each bulb separately. <b>setBulbColor</b> must be first method in chain, other methods order can be mixed. They will be invoked after async method returns data.</p>
+            </section>
+            <section>
+                <ul>
+                    <li><b>setBulbColor({ context, name, color })</b> will change bulb color and return reference to bulb component</li>
+                    <li><b>setBulbCounter(bulb)</b> will add bulb to array to get it's index in the future to set order number and return reference to bulb component</li>
+                    <li><b>setBulbNumber(bulb)</b> will render bulb order number and return reference to bulb component</li>
+                    <li><b>setBulbTime(bulb)</b> will render bulb end time and return reference to bulb component</li>
+                    <li><b>showAllBulbNumbers({ context })</b> will search all references to bulb components and show all bulb numbers in one time</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">lightBulb promise</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|4|5-9|13|16-18|18-20"></code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    <b>lightBulb</b> Promise is async method similar to all Apex methods used in Salesforce. It get object with bulb parametters as attribute and returns the same object. Every <b>then</b> block will invoke different bulb method described before. <b>catch</b> block will show error if occours. <b>finally</b> block will render in console string message 'everything is done' both after successful or error Promise chain end.
+                </p>
+            </section>
+        </section>
+        <section data-background-color="var(--pb-orange-color)">
+            <button onclick="nextBranch('async-3-2')">next</button>
         </section>
     </div>
 </div>
