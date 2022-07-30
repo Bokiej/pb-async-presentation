@@ -12,6 +12,7 @@ export default class Notify extends LightningElement {
             switch (event.detail?.type) {
                 case 'error':
                     this.error.showError(event.detail?.error);
+                    console.error(event.detail?.error);
                     break;
                 default:
                     break;
