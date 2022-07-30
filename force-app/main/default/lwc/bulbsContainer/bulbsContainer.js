@@ -13,6 +13,7 @@ export default class BulbsContainer extends LightningElement {
             console.log('2. setBulbTime');
             return setBulbTime(bulb);
         }).then(bulb => {
+            throw new Error('something went wrong');
             console.log('3. setBulbCounter');
             return setBulbCounter(bulb);
         }).then(bulb => {
