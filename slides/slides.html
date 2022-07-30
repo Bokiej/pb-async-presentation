@@ -1,27 +1,29 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-color)">
-            <h2>Does the location of the Promise methods matters?</h2>
-            <p>Promise has three different methods <b>then()</b>, <b>catch()</b>, <b>finally()</b>.</p>
+            <h2>Promise <b>catch()</b> method</h2>
+            <p class="fst-italic">The <b>catch()</b> method returns a Promise and deals with rejected cases only. (...)</p>
+            <p class="text-end">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" target="blank">mdn web docs</a>
+            </p>
         </section>
         <section>
-            <h3 class="pb-title">Promise composition</h3>
+            <h3 class="pb-title">catch() method</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|2-13|3,6,9,12|2,5,8,11,14,16"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|8|1-8,14-18"></code>
                 </pre>
-                <button class="fragment pb-next below" type="button" onclick="nextBranch('async-3-3')">2 go</button>
+                <button class="fragment pb-next below" type="button" onclick="nextBranch('async-3-3-2')">2 go</button>
             </section>
             <section>
                 <p>
-                    Every of <b>then()</b>, <b>catch()</b>, <b>finally()</b> methods will return an equivalent Promise object. This allow to chain calls to another promise method. <b>console.log</b>s show order of invoking methods in Promise chain. Logs in browser console will return values in below order:
+                    When error occour it will immediately go to the <b>catch()</b> method which handle errors. Every next line after error will not be invoked. <b>finally()</b> method will always be invoked both after success or error in Promise chain. Below is how will log from browser console look like.
                 </p>
                 <pre>
                     <code class="language-plaintext" data-trim>
                         1. setBulbColor
                         2. setBulbTime
-                        3. setBulbCounter
-                        4. showBulbNumber
+                        Error: something went wrong
                         finally method
                     </code>
                 </pre>
