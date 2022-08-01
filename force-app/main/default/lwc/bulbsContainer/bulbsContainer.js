@@ -10,13 +10,14 @@ export default class BulbsContainer extends LightningElement {
             console.log('1. setBulbColor');
             return setBulbColor({ context: this, ...data });
          } ).then(bulb => {
+            throw new Error('Error 1');
             console.log('2. setBulbTime');
             return setBulbTime(bulb);
         }).then(bulb => {
-            throw new Error('something went wrong');
             console.log('3. setBulbCounter');
             return setBulbCounter(bulb);
         }).then(bulb => {
+            throw new Error('Error 2');
             console.log('4. showBulbNumber');
             return showBulbNumber(bulb);
         }).catch(error => {
