@@ -1,11 +1,87 @@
 <div class="reveal">
     <div class="slides">
-        <section>
-            
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>then() method</h2>
+            <p class="fst-italic">The <b>then()</b> method returns a Promise. It takes up to two arguments: <b>callback</b> functions for the success and <b>failure cases</b> of the Promise.</p>
+            <p class="text-end">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="blank">mdn web docs</a>
+            </p>
         </section>
         <section>
-            <div>Slide 2</div>
-            <button class="fragment pb-next" type="button" onclick="nextBranch('async-1-1')">2 go</button>
+            <h3 class="pb-title">then() method</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers>
+                        myPromise.then(onFulfilled(data) [, onRejected(error) ]);
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    <b>then()</b> method takes two function arguments:
+                </p>
+                <ul>
+                    <li><b>onFulfilled</b> is called when promise is fulfilled. This function gets one argument which is data (<i class="fst-italic">fulfillment value</i>) returned from previous then() method or initial resolve() method in new Promise. If this argument is undefined then is automatically replaced with <b>(x) => x</b> method which passes the data (<i class="fst-italic">fulfillment value</i>) to next method.</li>
+                    <li><b>onRejected</b> is called when promise is rejected. This function gets one argument which is error (<i class="fst-italic">rejection reason</i>). If this argument is undefined then is automatically replaced with <b>(x) => { throw x; }</b> method which throws error (<i class="fst-italic">rejection reason</i>) to next catch method.</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">then() method</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers="|4|5-7">
+                        myPromise.then(data => {
+                            // fulfillment
+                            // remember to return something to use it in next then()
+                            return data || 'something'
+                        }, error => {
+                            console.log(error)
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    In 99% of cases there is no need to use second <b>then()</b> argument because errors will be handled by <b>catch()</b> method.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">then() method</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers="|4,7,9-10">
+                        myPromise.then(data => {
+                            // fulfillment
+                            // remember to return something to use it in next then()
+                            return data || 'something'
+                        }, error => {
+                            console.log(error)
+                        }).then(prevData => {
+                            ...
+                            return prevData || 'something else'
+                        }).then(otherData => {
+                            ...
+                        }).catch(error => {
+                            ...
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    It's important to return data in <b>then()</b> method to use it in next <b>then()</b> method in a chain.
+                </p>
+            </section>
+        </section>
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>What remember about then() method</h2>
+            <ul>
+                <li>It's important to return data in <b>then()</b> method to use it in next <b>then()</b> method in a chain.</li>
+                <li>In 99% of cases there is no need to use second <b>then()</b> argument because errors will be handled by <b>catch()</b> method.</li>
+            </ul>
+            <button class="pb-next" type="button" onclick="nextBranch('async-3-3-1')">2 go</button>
         </section>
     </div>
 </div>
