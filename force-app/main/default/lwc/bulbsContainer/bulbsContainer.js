@@ -4,6 +4,7 @@ import { showError } from 'c/utility';
 import lightBulb from 'c/utility'; // here goes Apex callback
 
 export default class BulbsContainer extends LightningElement {
+    isLoading = true;
 
     connectedCallback() {
         lightBulb({ name: 'yellow', color: '#FFEE58' }).then(data => {
@@ -12,21 +13,16 @@ export default class BulbsContainer extends LightningElement {
         }).then(bulb => {
             console.log('2. setBulbTime');
             return setBulbTime(bulb);
-        }).finally(() => {
-            console.warn('finally method 1');
-            return `can I override 'bulb' object?`;
         }).then(bulb => {
             console.log('3. setBulbCounter');
-            console.log('bulb object is', bulb);
             return setBulbCounter(bulb);
         }).then(bulb => {
-            throw new Error('Error');
             console.log('4. showBulbNumber');
             return showBulbNumber(bulb);
         }).catch(error => {
             showError({ context: this, error });
         }).finally(() => {
-            console.warn('finally method 2');
+            this.isLoading = false;
         });
     }
 }

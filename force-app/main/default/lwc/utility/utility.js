@@ -11,7 +11,7 @@ function lightBulb({ name, color }) {
     });
 }
 
-function setRandomTimeout(min = 1, max = 5) {
+function setRandomTimeout(min = 3, max = 7) {
     return (Math.floor(Math.random() * (max - min)) + min) * 1000;
 }
 
