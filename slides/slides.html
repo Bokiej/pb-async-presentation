@@ -1,44 +1,35 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-color)">
-            <h2>finally() method</h2>
-            <p class="fst-italic">The <b>finally()</b> method of a Promise schedules a function, the callback function, to be called when the promise is settled. Like then() and catch(), it immediately returns an equivalent Promise object, allowing you to chain calls to another promise method, an operation called composition.</p>
-            <p class="fst-italic">This lets you avoid duplicating code in both the promise's then() and catch() handlers.</p>
-            <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally" target="blank">mdn web docs</a>
-            </p>
+            <h2>How to use finally() and loader?</h2>
+            <p>Loader / Spinner is a special component that creates animation that shows User that data is downloading and he have to wait until it finish. <b>finally()</b> method is a perfect place to stop loader / spinner because error or success occoured.</p>
         </section>
         <section>
             <h3 class="pb-title">finally() method</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|15|7-10,20-22|1-15,18-22|9,12"></code>
+                    <code class="language-html bulbs-container-html" data-trim data-line-numbers="|2"></code>
                 </pre>
             </section>
             <section>
                 <p>
-                    <b>finally()</b> method will always be invoked both after success or error in Promise chain. I returns Promise from previous method and don't override data for next method in return statement unless it throws error. Below is how will log from browser console look like.
+                    Loader or lightning-spinner should be added to lwc HTML with if:true argument and reference to value in js. In xe it is isloading value;
                 </p>
-                <pre>
-                    <code class="language-plaintext" data-trim>
-                        1. setBulbColor
-                        2. setBulbTime
-                        finally method 1
-                        3. setBulbCounter
-                        bulb object is <c-bulb>...</c-bulb>
-                        Error: Error
-                        finally method 2
-                    </code>
-                </pre>
             </section>
         </section>
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>What to remember about finally()?</h2>
-            <ul>
-                <li>it returns Promise with data form previous method or if error occours inside finally() returns this error</li>
-                <li>it's good to use it once at the end of Promise</li>
-            </ul>
-            <button class="pb-next" type="button" onclick="nextBranch('async-3-4-2')">2 go</button>
+        <section>
+            <h3 class="pb-title">finally() method</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js bulbs-container-js-full" data-trim data-line-numbers="|7|10-26|25"></code>
+                </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-1-1')">2 go</button>
+            </section>
+            <section>
+                <p>
+                    Value <b>isLoading</b> controls render of our loader component. At the begining is true and after Promise is finished it changes to false what removes loader from DOM.
+                </p>
+            </section>
         </section>
     </div>
 </div>
