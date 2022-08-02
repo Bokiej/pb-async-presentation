@@ -1,41 +1,30 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h3 class="pb-title">catch() method</h3>
+            <h3 class="pb-title">then(..., <i class="fst-italic">onReject</i>) method</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|5,15|8-10,18-20|1-5,8-15,18-22|12"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|5,14|11-13|17-19|1-5,11-14,17-21"></code>
                 </pre>
             </section>
             <section>
                 <p>
-                    When there are two <b>catch()</b> methods, each one will handle first error before. Every next line after error in <b>then()</b> methods won't be invoked until it reaches <b>catch()</b> method. <b>finally()</b> method will always be invoked both after success or error in Promise chain. Below is how will log from browser console look like.
+                    When error is thrown before <b>then(..., <i class="fst-italic">onReject</i>) </b> method it will catch it and won't invoke <b>then()</b> body and pass <i class="fst-italic">undefined</i> to next <b>then()</b>. <b>catch()</b> will intercept second error. If <b>catch()</b> will be before <i class="fst-italic">onReject</i> then <i class="fst-italic">onReject</i> won't intercept error. <b>finally()</b> method will always be invoked both after success or error in Promise chain. Below is how will log from browser console look like.
                 </p>
                 <pre>
                     <code class="language-plaintext" data-trim>
                         1. setBulbColor
                         Error: Error 1
-                        3. setBulbCounter
-                        bulb object is undefined
                         Error: Error 2
                         finally method
                     </code>
                 </pre>
             </section>
-            <section>
-                <p>
-                    Notice that after first catch() method <i class="fst-italic">bulb</i> argument in <b>then(<i class="fst-italic">bulb</i> => ...)</b> method is <i class="fst-italic">undefined</i> since catch method is invoked with error in place of bulb object and it also returns nothing.
-                </p>
-            </section>
         </section>
         <section data-background-color="var(--pb-orange-color)">
-            <h2>Why bulb object is undefined?</h2>
-            <p class="fst-italic">(...) calling <b>obj.catch(onRejected)</b> internally calls <b>obj.then(undefined, onRejected))</b>. This means that you have to provide an onRejected function even if you want to fall back to an undefined result value - for example <b>obj.catch(() => {}) (...)</b></p>
-            <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" target="blank">mdn web docs</a>
-            </p>
-            <p>That's why in most cases is good to use <b>one</b> catch block at the end of promise (befor <b>finally()</b>).</p>
-            <button class="pb-next" type="button" onclick="nextBranch('async-3-3-4')">2 go</button>
+            <h2>When use onReject inside then() method?</h2>
+            <p>In most cases is better to use single <b>catch()</b> at the end of Promise. But such technique can be used as sophisicated 'if' statement. 'if error occours do something and return something else'.</p>
+            <button class="pb-next" type="button" onclick="nextBranch('async-3-4-1')">2 go</button>
         </section>
     </div>
 </div>
