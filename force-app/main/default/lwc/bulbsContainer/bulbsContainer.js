@@ -11,11 +11,15 @@ export default class BulbsContainer extends LightningElement {
 
     connectedCallback() {
         Promise.any([
-            lightBulb({ ...this.YELLOW }),
+            lightBulb({ ...this.YELLOW }).then(() => {
+                throw new Error('Yellow bulb Error');
+            }),
             lightBulb({ ...this.RED }).then(() => {
                 throw new Error('Red bulb Error');
             }),
-            lightBulb({ ...this.GREEN }),
+            lightBulb({ ...this.GREEN }).then(() => {
+                throw new Error('Green bulb Error');
+            }),
             lightBulb({ ...this.BLUE }).then(() => {
                 throw new Error('Blue bulb Error');
             })
