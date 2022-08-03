@@ -1,36 +1,15 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>Promise.allSettled()</h2>
-            <p class="fst-italic">The <b>Promise.allSettled()</b> method returns a promise that fulfills after all of the given promises have either fulfilled or rejected, with an array of objects that each describes the outcome of each promise. (...)</p>
-            <p class="fst-italic">In comparison, the Promise returned by <b>Promise.all()</b> may be more appropriate if the tasks are dependent on each other / if you'd like to immediately reject upon any of them rejecting.</p>
-            <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled" target="blank">mdn web docs</a>
-            </p>
-        </section>
         <section>
             <h3 class="pb-title">Promise.allSettled()</h3>
             <section data-auto-animate>
-                <p>Result of <b>Promise.allSettled()</b> is array of objects with status ('fulfilled' or 'rejected') which tell was there any error and value which returns value if fulfilled and error reson if rejected.</p>
                 <pre data-id="code-animation">
-                    <code class="language-js" data-trim data-line-numbers>
-                        [
-                            { status: 'fulfilled', value: 'data'}
-                            { status: 'fulfilled', value: [ 'data'] }
-                            { status: 'rejected', reason: ... }
-                            ...
-                        ]
-                    </code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|3-5|9"></code>
                 </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-3-3')">2 go</button>
             </section>
-        </section>
-        <section>
-            <h3 class="pb-title">Promise.allSettled()</h3>
-            <section data-auto-animate>
-                <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|6-12"></code>
-                </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-3-2')">2 go</button>
+            <section>
+                <p>If we return only bulb values to the next <b>then()</b> method then error won't be catched because promises with status 'rejected' won't have value argument.</p>
             </section>
         </section>
     </div>
