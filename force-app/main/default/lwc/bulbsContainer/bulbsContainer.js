@@ -12,11 +12,12 @@ export default class BulbsContainer extends LightningElement {
     connectedCallback() {
         Promise.race([
             lightBulb({ ...this.YELLOW }),
-            lightBulb({ ...this.RED }),
+            lightBulb({ ...this.RED }).then(() => {
+                throw new Error('Red bulb Error');
+            }),
             lightBulb({ ...this.GREEN }),
             lightBulb({ ...this.BLUE })
         ]).then(bulb =>
-            // returns single Promise
             setBulbColor({ context: this, ...bulb })
         ).then(bulb =>
             setBulbTime(bulb)
