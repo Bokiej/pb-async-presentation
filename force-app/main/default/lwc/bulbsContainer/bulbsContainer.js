@@ -10,51 +10,24 @@ export default class BulbsContainer extends LightningElement {
     BLUE = { name: 'blue', color: '#4FC3F7' }; 
 
     connectedCallback() {
-        lightBulb({ ...this.YELLOW }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.RED }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.GREEN }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.BLUE }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
+        Promise.all([
+            lightBulb({ ...this.YELLOW }),
+            lightBulb({ ...this.RED }),
+            lightBulb({ ...this.GREEN }),
+            lightBulb({ ...this.BLUE })
+        ]).then(bulbs => {
+            // bulbs is array of returned data in order
+            // bulbs = [ yellow, red, green, blue ]
+            return bulbs.map(bulb =>
+                setBulbColor({ context: this, ...bulb })
+            );
+        }).then(bulbs => {
+            return bulbs.map(bulb => setBulbTime(bulb));
+        }).then(bulbs => {
+            return bulbs.map(bulb => setBulbCounter(bulb));
+        }).then(bulbs => {
+            return bulbs.map(bulb => showBulbNumber(bulb));
+        }).catch(error => {
             showError({ context: this, error });
         });
     }
