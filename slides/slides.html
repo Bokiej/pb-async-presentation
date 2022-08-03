@@ -1,11 +1,25 @@
 <div class="reveal">
     <div class="slides">
-        <section>
-            <span class="animate__animated animate__flash animate__infinite">Slide 1</span>
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>It's impossible to predict the sequence</h2>
+            <p>When you query many endpoints at the same time you have to prepare to structure your results because you don't know in which order they will be returned.</p>
         </section>
         <section>
-            <div>Slide 2</div>
-            <button class="fragment pb-next" type="button" onclick="nextBranch('async-1-1')">2 go</button>
+            <h3 class="pb-title">Methods for many Promises</h3>
+            <section data-auto-animate>
+                <p>We can handle many Promises at the same time with below methods:</p>
+                <ul>
+                    <li><b>Promise.all()</b></li>
+                    <li><b>Promise.allSettled()</b></li>
+                    <li><b>Promise.race()</b></li>
+                    <li><b>Promise.any()</b></li>
+                </ul>
+                <p>Every method will be described in next sections.</p>
+                <button class="fragment pb-next" type="button" onclick="nextBranch('async-4-2-1')">2 go</button>
+            </section>
+            <section>
+                <p>Checkout how works bulb-app LWC component to see how difficult is to predict order of Promises.</p>
+            </section>
         </section>
     </div>
 </div>
