@@ -17,12 +17,15 @@ export default class BulbsContainer extends LightningElement {
             }),
             lightBulb({ ...this.GREEN }),
             lightBulb({ ...this.BLUE })
-        ]).then(bulbs =>{
-            console.log(bulbs);
-            return bulbs.map(
-                bulb => setBulbColor({ context: this, ...bulb?.value })
-            );
-        }).then(bulbs =>
+        ]).then(bulbs =>
+            bulbs.map(bulb => {
+                if (bulb.status === 'fulfilled') {
+                    return setBulbColor({ context: this, ...bulb?.value });
+                } else if (bulb.status === 'rejected') {
+                    console.error(bulb.reason);
+                }
+            })
+        ).then(bulbs =>
             bulbs.map(bulb => setBulbTime(bulb))
         ).then(bulbs =>
             bulbs.map(bulb => setBulbCounter(bulb))
