@@ -12,12 +12,13 @@ export default class BulbsContainer extends LightningElement {
     connectedCallback() {
         Promise.allSettled([
             lightBulb({ ...this.YELLOW }),
-            lightBulb({ ...this.RED }),
+            lightBulb({ ...this.RED }).then(() => {
+                throw new Error('Red bulb Error');
+            }),
             lightBulb({ ...this.GREEN }),
             lightBulb({ ...this.BLUE })
-        ]).then(bulbs => {
-            // bulbs return array of object with two arguments
-            // [{ status: 'fulfilled' || 'rejected', value: ...}, ...] 
+        ]).then(bulbs =>{
+            console.log(bulbs);
             return bulbs.map(
                 bulb => setBulbColor({ context: this, ...bulb?.value })
             );
