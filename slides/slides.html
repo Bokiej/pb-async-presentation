@@ -1,53 +1,24 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-color)">
-            <h2>Promise.all()</h2>
-            <p class="fst-italic">The <b>Promise.all()</b> method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises. This returned promise will fulfill when all of the input's promises have fulfilled, or if the input iterable contains no promises. It rejects immediately upon <u>any</u> of the input promises rejecting or non-promises throwing an error, and will reject with this first rejection message / error</p>
+            <h2>Promise.any()</h2>
+            <p class="fst-italic"><b>Promise.any()</b> takes an iterable of Promise objects. It returns a single promise that fulfills as soon as any of the promises in the iterable fulfills, with the value of the fulfilled promise. If no promises in the iterable fulfill (if all of the given promises are rejected), then the returned promise is rejected with an <u>AggregateError</u>, a new subclass of <u>Error</u> that groups together individual errors.</p>
             <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="blank">mdn web docs</a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/any" target="blank">mdn web docs</a>
             </p>
         </section>
         <section>
-            <h3 class="pb-title">Promise.all()</h3>
+            <h3 class="pb-title">Promise.any()</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|7-10,14-17"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|3-5,7-9"></code>
                 </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-5-2')">2 go</button>
             </section>
             <section>
                 <p>
-                    As in previous section objects in BulbsContainer class are separated since it's easier to navigate this way. It wont be shown in the future examples.
+                    Small difference between <b>Promise.any()</b> and <b>Promise.race()</b> is that <b>Promise.any()</b> will return only fulfilled Promises.
                 </p>
-            </section>
-        </section>
-        <section>
-            <h3 class="pb-title">Promise.all()</h3>
-            <section data-auto-animate>
-                <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|1-6|6-12|9-11,13,15,17"></code>
-                </pre>
-                <p class="fragment below fst-italic">
-                    <b>.map()</b> method will return array populated with the results of calling a provided function on every element in the calling array.
-                    (<a class="text-end" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="blank">mdn web docs</a>)
-                </p>
-            </section>
-        </section>
-        <section>
-            <h3 class="pb-title">Promise.all()</h3>
-            <section data-auto-animate>
-                <p>
-                    Promise.all() takes array of promises and returns array of returned data in order of Promises in input array.
-                </p>
-                <pre data-id="code-animation">
-                    <code class="language-js" data-trim data-line-numbers>
-                        Promise.all([ promise1, promise2, promise3 ]).then(data => {
-                            const promise1data = data[0];
-                            const promise2data = data[1];
-                            const promise3data = data[2];
-                        });
-                    </code>
-                </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-2-2')">2 go</button>
             </section>
         </section>
     </div>
