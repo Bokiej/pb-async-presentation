@@ -1,11 +1,165 @@
 <div class="reveal">
     <div class="slides">
-        <section>
-            
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>What is Promise?</h2>
+            <p class="fst-italic">A <b>Promise</b> is a proxy for a value not necessarily known when the promise is created. (...) instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.</p>
+            <p class="text-end">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="blank">mdn web docs</a>
+            </p>
         </section>
         <section>
-            <div>Slide 2</div>
-            <button class="fragment pb-next" type="button" onclick="nextBranch('async-1-1')">2 go</button>
+            <h3 class="pb-title">How to create a Primise?</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers>
+                        const myPromise = new Promise((resolve, reject) => {
+                            ...
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <div class="text-start">
+                    <p>Promise always takes two arguments.</p>
+                    <ul>
+                        <li>one to resolve</li>
+                        <li>and one to reject</li>
+                    </ul>
+                    <p>asynchronous method. You can reaname those methods as you want or use existing one. <b>resolve()</b> method will return desired data when Promise will run sucessfully. Otherwise it will throw data form <b>reject()</b> method if it was created.</p>
+                </div>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">Promise decission diagram</h3>
+            <section>
+                <div class="row align-items-center pb-text-30">
+                    <div class="col-2">
+                        <div class="row justify-content-center" style="position: relative;">
+                            <div class="pb-text-20" style="position: absolute; bottom: 80px; margin: auto 0;">pending</div>
+                            <div class="border border-warning rounded p-3">
+                                Promise
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="fragment container">
+                            <div class="row align-items-center">
+                                <div class="col-3 pb-text-20" style="margin-top: 120px;">fulfill</div>
+                                <div class="border col-6 pb-text-20 p-1">.then(onFulfillment)</div>
+                                <div class="col-3 pb-text-20 border p-1" style="margin-bottom: 150px;">async actions</div>
+                            </div>
+                        </div>
+                        <div class="fragment container">
+                            <div class="row align-items-center">
+                                <div class="col-3 pb-text-20" style="margin-bottom: 60px;">reject</div>
+                                <div class="border col-6 pb-text-20 p-1">
+                                    <div>.then(...,onRejection)</div>
+                                    <div>or</div>
+                                    <div>.catch(onRejection)</div>
+                                </div>
+                                <div class="col-3 border pb-text-20 p-1" style="margin-top: 180px;">error handling</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 fragment">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-9 row justify-content-center" style="position: relative;">
+                                <div class="pb-text-20" style="position: absolute; bottom: 80px; margin: auto 0;">pending</div>
+                                <div class="border border-warning rounded p-3">
+                                    Promise
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border col-2 fragment p-3">
+                        <div>.then()</div>
+                        <div>.catch()</div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">How to create a Primise?</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers="2-6">
+                        const myPromise = new Promise((resolve, reject) => {
+                            // setTimeout is standard asynchronous method
+                            setTimeout(
+                                () => resolve('Resolved'),
+                                1000
+                            );
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    To sucessfully invoke promise it is necessary to just invoke <b>resolve()</b> method with desired data as an parametter. setTimeout in example It can be any type of data. In example it's 'Resolved' string.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">How to create a Primise?</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers="4,6-8">
+                        const myPromise = new Promise((resolve, reject) => {
+                            setTimeout(
+                                () => {
+                                    try {
+                                        resolve('Resolved');
+                                    } catch (error) {
+                                        reject(`Error inside setTimeout: ${error}`);
+                                    }
+                                },
+                                1000
+                            );
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    To catch errors inside async method just use try catch block inside it and invoke <b>reject()</b> method with desired data. Data will be used as an parametter in future catch block in <b>new Promise</b>. In example it's error string message.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">How to create a Primise?</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers="2,13-15">
+                        const myPromise = new Promise((resolve, reject) => {
+                            try {
+                                setTimeout(
+                                    () => {
+                                        try {
+                                            resolve('Resolved');
+                                        } catch (error) {
+                                            reject(`Error inside setTimeout: ${error}`);
+                                        }
+                                    },
+                                    1000
+                                );
+                            } catch (error) {
+                                reject(`Error during setup: ${error}`);
+                            }
+                        });
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    To catch errors outside async method also use try catch block and invoke <b>reject()</b> method with desired data. As you can see it's possible to use resolve, reject methods many times with different data.
+                </p>
+            </section>
+        </section>
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>How work creating Promises in Salesforce?</h2>
+            <p>In most cases there is no need to create Promises inside Salesforce LWC since imported Apex and @wire method are already Promises with correctly invoked resolve, reject methods.</p>
+            <button class="fragment pb-next" type="button" onclick="nextBranch('async-2-1-1')">2 go</button>
         </section>
     </div>
 </div>
