@@ -15,14 +15,20 @@ export default class BulbsContainer extends LightningElement {
             lightBulb({ ...this.RED }),
             lightBulb({ ...this.GREEN }),
             lightBulb({ ...this.BLUE })
-        ]).then(bulbs =>
-            bulbs.map(bulb => setBulbColor({ context: this, ...bulb }))
-        ).then(bulbs =>
+        ]).then(bulbs => {
+            const [ yellow, red, green, blue ] = bulbs;
+
+            console.log(`Bulb name is: ${green.name}`);
+
+            return [ yellow, green, blue ].map(
+                bulb => setBulbColor({ context: this, ...bulb })
+            );
+        }).then(bulbs =>
             bulbs.map(bulb => setBulbTime(bulb))
         ).then(bulbs =>
             bulbs.map(bulb => setBulbCounter(bulb))
-        ).then(bulbs =>
-            bulbs.map(bulb => showBulbNumber(bulb))
+        ).then(([ , , blue ]) =>
+            showBulbNumber(blue)
         ).catch(error => {
             showError({ context: this, error });
         });
