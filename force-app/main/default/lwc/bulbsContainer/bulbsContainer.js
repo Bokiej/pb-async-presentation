@@ -10,23 +10,23 @@ export default class BulbsContainer extends LightningElement {
     BLUE = { name: 'blue', color: '#4FC3F7' }; 
 
     connectedCallback() {
-        Promise.all([
+        Promise.any([
             lightBulb({ ...this.YELLOW }),
-            lightBulb({ ...this.RED }),
+            lightBulb({ ...this.RED }).then(() => {
+                throw new Error('Red bulb Error');
+            }),
             lightBulb({ ...this.GREEN }),
-            lightBulb({ ...this.BLUE })
-        ]).then(bulbs => {
-            // bulbs is array of returned data in order
-            // bulbs = [ yellow, red, green, blue ]
-            return bulbs.map(bulb =>
-                setBulbColor({ context: this, ...bulb })
-            );
-        }).then(bulbs => {
-            return bulbs.map(bulb => setBulbTime(bulb));
-        }).then(bulbs => {
-            return bulbs.map(bulb => setBulbCounter(bulb));
-        }).then(bulbs => {
-            return bulbs.map(bulb => showBulbNumber(bulb));
+            lightBulb({ ...this.BLUE }).then(() => {
+                throw new Error('Blue bulb Error');
+            })
+        ]).then(bulb =>
+            setBulbColor({ context: this, ...bulb })
+        ).then(bulb =>
+            setBulbTime(bulb)
+        ).then(bulb =>
+            setBulbCounter(bulb)
+        ).then(bulb => {
+            showBulbNumber(bulb)
         }).catch(error => {
             showError({ context: this, error });
         });
