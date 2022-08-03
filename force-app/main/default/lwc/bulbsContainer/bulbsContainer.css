@@ -2,3 +2,9 @@
     display: flex;
     margin: 0 .75rem;
 }
+
+c-bulb {
+    margin: 10px;
+    width: 10%;
+    font-size: 25px;
+}

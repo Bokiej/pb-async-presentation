@@ -7,49 +7,25 @@ export default class BulbsContainer extends LightningElement {
     YELLOW = { name: 'yellow', color: '#FFEE58' };
     RED = { name: 'red', color: '#FF7043' };
     GREEN = { name: 'green', color: '#66BB6A' };
-    BLUE = { name: 'blue', color: '#4FC3F7' }; 
+    BLUE = { name: 'blue', color: '#4FC3F7' };
+
+    bulbsArraySize = 56;
+    bulbs = new Array(this.bulbsArraySize).fill('').map((el, index) => {
+        const bulb = { ...[ this.YELLOW, this.RED, this.GREEN, this.BLUE ][Math.floor(Math.random() * 4)] };
+
+        bulb.name += `-${index}`;
+        return bulb;
+    });
 
     connectedCallback() {
-        lightBulb({ ...this.YELLOW }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
+        for (let i = 0; i < this.bulbsArraySize; i++) {
+            this.runLightBulbPromise(this.bulbs[i]);
+        }
+    }
 
-        lightBulb({ ...this.RED }).then(data =>
+    runLightBulbPromise(bulb) {
+        lightBulb(bulb).then(data =>
             setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.GREEN }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
-        ).then(bulb =>
-            setBulbCounter(bulb)
-        ).then(bulb =>
-            showBulbNumber(bulb)
-        ).catch(error => {
-            showError({ context: this, error });
-        });
-
-        lightBulb({ ...this.BLUE }).then(data =>
-            setBulbColor({ context: this, ...data })
-        ).then(bulb =>
-            setBulbTime(bulb)
         ).then(bulb =>
             setBulbCounter(bulb)
         ).then(bulb =>

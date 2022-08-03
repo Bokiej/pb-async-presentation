@@ -1,8 +1,7 @@
 <template>
     <div class="slds-grid slds-gutters slds-wrap">
-        <c-bulb class="slds-col" data-name={YELLOW.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={RED.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={GREEN.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={BLUE.name}></c-bulb>
+        <template for:each={bulbs} for:item="bulb">
+            <c-bulb key={bulb.name} class="slds-col" data-name={bulb.name}></c-bulb>
+        </template>
     </div>
 </template>

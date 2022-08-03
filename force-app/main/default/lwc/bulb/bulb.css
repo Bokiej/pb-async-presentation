@@ -42,8 +42,7 @@
 
 .number {
     position: absolute;
-    top: 32px;
-    font-size: 55px;
+    top: 18%;
     color: var(--pb-bulb-highlight-color, white);
 }
 
