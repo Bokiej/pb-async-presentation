@@ -2,7 +2,8 @@
 Base was Monokai style - ported by Luigi Maselli - http://grigio.org
 */
 
-.reveal pre {
+.reveal pre,
+.below {
   position: relative;
   top: 80px;
 }
