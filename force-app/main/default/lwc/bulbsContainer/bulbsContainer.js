@@ -15,7 +15,9 @@ export default class BulbsContainer extends LightningElement {
         this.runBulb(
             lightBulb(this.YELLOW)
         ).then(() =>
-            this.runBulb(lightBulb(this.RED))
+            this.runBulb(lightBulb(this.RED)).then(() => {
+                throw new Error('Red bulb Error');
+            })
         ).then(() =>
             this.runBulb(lightBulb(this.GREEN))
         ).then(() =>
