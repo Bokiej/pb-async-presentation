@@ -1,4 +1,5 @@
 <template>
+    <c-loader if:true={isLoading}></c-loader>
     <div class="slds-grid slds-gutters slds-wrap">
         <c-bulb class="slds-col" data-name={YELLOW.name}></c-bulb>
         <c-bulb class="slds-col" data-name={RED.name}></c-bulb>
