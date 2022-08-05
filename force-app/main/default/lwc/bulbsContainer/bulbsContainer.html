@@ -1,10 +1,13 @@
 <template>
-    <c-loader if:true={isLoading}></c-loader>
-    <div class="slds-grid slds-gutters slds-wrap">
-        <c-bulb class="slds-col" data-name={WIRE.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={YELLOW.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={RED.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={GREEN.name}></c-bulb>
-        <c-bulb class="slds-col" data-name={BLUE.name}></c-bulb>
+    <lightning-checkbox-group name="bulbs"
+                              label="Choose bulb to render:"
+                              options={options}
+                              value={choosedBulbs}
+                              onchange={handleBulbsChange}>
+    </lightning-checkbox-group>
+    <div class="bulbs-container slds-grid slds-gutters slds-wrap" >
+        <template for:each={bulbsToRender} for:item="bulb">
+            <c-bulb key={bulb.name} class="slds-col" data-name={bulb.name}></c-bulb>
+        </template>
     </div>
 </template>

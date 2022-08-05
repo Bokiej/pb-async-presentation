@@ -2,3 +2,17 @@
     display: flex;
     margin: 0 .75rem;
 }
+
+lightning-checkbox-group {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 15px;
+    border-right: 1px solid grey;
+    background: white;
+}
+
+.bulbs-container {
+    margin-left: 180px;
+}
