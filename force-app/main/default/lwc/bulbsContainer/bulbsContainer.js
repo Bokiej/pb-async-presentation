@@ -16,11 +16,13 @@ export default class BulbsContainer extends LightningElement {
         ).then(bulb => {
             showBulbNumber(bulb);
 
-            const number = this.template
-                .querySelector(`c-bulb[data-name=${this.YELLOW.name}]`)
-                .getBulbNumber();
-    
-            console.log(`number of '${this.YELLOW.name}' bulb is: ${number}`);
+            setTimeout(() => {
+                const number = this.template
+                    .querySelector(`c-bulb[data-name=${this.YELLOW.name}]`)
+                    .getBulbNumber();
+        
+                console.log(`number of '${this.YELLOW.name}' bulb is: ${number}`);
+            }, 0);
         }).then(bulb => {}).catch(error => {
             showError({ context: this, error });
         });
