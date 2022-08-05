@@ -1,54 +1,27 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-cyan)">
-            <h2>Case study 2</h2>
-            <h3>when LWC component don't want to rerender values</h3>
-            <p>Somtimes even everything is set 'correctly', returned values from HTML are undefined.</p>
-        </section>
-        <section>
-            <h3 class="pb-title">bulbsContainer.html</h3>
-            <section data-auto-animate>
-                <pre data-id="code-animation">
-                    <code class="language-html bulbs-container-html" data-trim data-line-numbers></code>
-                </pre>
-            </section>
-            <section>
-                <p>This time there is only one bulb component with no extra data.</p>
-            </section>
-        </section>
-        <section>
-            <h3 class="pb-title">bulb.js</h3>
-            <section data-auto-animate>
-                <pre data-id="code-animation">
-                    <code class="language-js bulb-full" data-trim data-line-numbers="|28-31"></code>
-                </pre>
-            </section>
-            <section>
-                <p>This time it is necessary to create additional <b>getBulbNumber</b> method to get number from HTML in bulb component.</p>
-            </section>
+            <h2>How force LWC to get data after HTML rerender</h2>
+            <p>How to change code from previous section to let it works.</p>
         </section>
         <section>
             <h3 class="pb-title">bulbsContainer.js</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|10-12|14"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|10-16|16"></code>
                 </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-3')">2 go</button>
             </section>
             <section>
-                <p>In <b>bulbsContainer</b> method from bulb compoenent called <b>getBulbNumber</b> is invoked right after <b>showBulbnumber</b>. But after Promise is resolved console log of browser shows the umber is empty but nuber is visible in browser in HTML.</p>
+                <p>First method is to wrap code with <b>setTimeout</b> and set it milisecond to any value. To compute it immediately then value of it should be 0.</p>
+                <p>This force browser JavaScript Engine to wait until everything will be rerendered and invoke async method after that.</p>
+                <p>Now returned data in browser console is:</p>
                 <pre data-id="code-animation">
-                    <code class="language-puretext" data-trim>
-                        number of 'yellow' bulb is: 
+                    <code class="language-plaintext" data-trim>
+                        number of 'yellow' bulb is: 1
                     </code>
                 </pre>
             </section>
-        </section>
-        <section data-background-color="var(--pb-orange-cyan)">
-            <h2>What happened?</h2>
-            <p>Why number is returned as empty string even though it is inside HTML?</p>
-            <p class="fragment">The reason is <b>bulb</b> component have no time to rerender and is returnig previous state.</p>
-            <p class="fragment">How to fix it?</p>
-            <button class="fragment pb-next" type="button" onclick="nextBranch('async-6-2-2')">2 go</button>
         </section>
     </div>
 </div>
