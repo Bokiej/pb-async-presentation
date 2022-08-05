@@ -1,4 +1,4 @@
-const order = [];
+let order = [];
 
 function setBulbColor({ context, name, color }) {
     const bulb = context.template.querySelector(`[data-name="${name}"]`);
@@ -34,10 +34,15 @@ function showAllBulbNumbers({ context }) {
     });
 }
 
+function clearOrder() {
+    order = [];
+}
+
 export {
     setBulbColor,
     setBulbTime,
     setBulbCounter,
     showBulbNumber,
-    showAllBulbNumbers
+    showAllBulbNumbers,
+    clearOrder
 };
