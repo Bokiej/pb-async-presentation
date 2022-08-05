@@ -1,22 +1,30 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>Run Promises one after another</h2>
-            <p>The easiest way to run promise after another is to run it inside <b>then()</b> method.</p>
-        </section>
         <section>
             <h3 class="pb-title">Promise one after another</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|30-42|40|15-17|18,20,22"></code>
+                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|18-20,26"></code>
                 </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-6-2')">2 go</button>
             </section>
             <section>
                 <p>
-                    Inside bulbsContainer is separated method for returning fully resolved method named <b>runBulb()</b>. It is necessary to begin chain with this method since it returns Promise. To run next Promise every <b>then()</b> block should initiate <b>runBulb()</b> again with different bulb parameters.
+                    Every error thrown in any promise in a chain will be intersept by <b>catch()</b> method. Console log in browser will look like below.
                 </p>
+                <pre>
+                    <code class="language-plaintext" data-trim>
+                        'yellow' bulb works
+                        'red' bulb works
+                        Error: Red bulb Error
+                    </code>
+                </pre>
             </section>
+        </section>
+        <section data-background-color="var(--pb-orange-color)">
+            <h2>When to use Promises one after another?</h2>
+            <p>Every time there is necessity to achieve the desired sequence in queries. But this is rather seldom situation.</p>
+            <p>If we query two Apex callbacks one after another is better to create one callback in Apex rather to run two queries one after another in front-end. It will take longer response if you query many callbacks in frontend.</p>
+            <button class="pb-next" type="button" onclick="nextBranch('async-4-7-1')">2 go</button>
         </section>
     </div>
 </div>
