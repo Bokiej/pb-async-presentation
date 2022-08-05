@@ -1,34 +1,52 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-cyan)">
-            <h2>Case study 1</h2>
-            <h3>know when <b>@wire</b> and Apex callback resolve then do something</h3>
-            <p>You can't use in such case Promise.all() etc. since @wire is independent. So how do it?</p>
+            <h2>Case study 3</h2>
+            <h3>many checkboxes, many queries</h3>
+            <p>Somtimes is necessary to query many different endpoints with differend configurations depending of setup made on frontend.</p>
+            <p>For example every checkbox is different endpoint. How to manage it?</p>
         </section>
         <section>
             <h3 class="pb-title">bulbsContainer.html</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-html bulbs-container-html" data-trim data-line-numbers="|2"></code>
+                    <code class="language-html bulbs-container-html" data-trim data-line-numbers="|2|5-7"></code>
                 </pre>
             </section>
             <section>
-                <p>To show when all of queries stop <b>c-loader</b> will be used. In such case standard lightning-spinner can be used too.</p>
-                <p>Common loader / spinner for different queries is a good example of used in everyday work.</p>
+                <p>Whole example will be based on checkbox group. Each checkbox will query different bulb and render it.</p>
+                <p>Different combinations of checbox will render different bulbs. Thats why <b>c-bulbs</b> components are rendered conditionally using <b>for:each</b>.</p>
+                <p>Main problem is that in this example each click in the checkbox will create different query. Queries from they nature are asynchronous thats wy it is necessary to capture only last one.</p>
+                <p>But its impossible to cancel Promise. If it was invoked it must be resolved or rejected. This exaple is simple method to hack it.</p>
             </section>
         </section>
         <section>
             <h3 class="pb-title">bulbsContainer.js</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|14-15|33,55|34,56|19-21|17|60-67|64"></code>
+                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|12-13|18-24|15|26-59|29|27-28,31|34,58|37|35|39-41|43|44-53"></code>
                 </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-1')">2 go</button>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-4-1')">2 go</button>
             </section>
             <section>
-                <p>To check if all queries were resolved it is necessary to create flags like in example above (<b>wireBulbResolved, otherBulbsResolved</b>) or check if data was retrived. Console logs will show when queries are done.</p>
-                <p>In such case <b>isLoading</b> must be getter since after every component rerender values of flags must be checked.</p>
-                <p>To show all numbers at once at the end on every rerender it s necessary to check if <b>isLoading</b> is done. It is good practice to use <b>isRendering</a> flag to do rendering only if necessary.</p>
+                <p><b>allBulbs</b> is variable with array of bulbs and <b>bulbsToRender</b> is variable with filtered bulbs that are currently rendered.</p>
+                <p><b>choosedBulbs</b> is variable for choosed checkboxes and <b>options</b> are all available checkbox options.</p>
+                <p>Since we can't cancel promise we use <b>promiseId</b> to set id number of current Promise for future checking is it the last invoked Promise.</p>
+                <p><b>handleBulbsChange()</b> is method invoked any time checkbox group is changed.</p>
+                <p>Go down to read more about <b>handleBulbsChange()</b></p>
+            </section>
+            <section>
+                <p>In the begining of <b>handleBulbsChange()</b> choosedBulbs are set from lightning-checkbox-group event.</p>
+                <p>Next <b>clearOrder()</b> will start bulbs order again form 0. <b>bulbsToRender()</b> are set emtpty because the easiest way to reset bulbs is to remove them form HTML.</p>
+                <p>But as was described in previous section it is necessary to wait until HTML will rerender to empty bulbs.</p>
+                <p>That's why <b>setTimeout()</b> wraps Promises and waits until HTML will be purged.</p>
+                <p>Go down to read more.</p>
+            </section>
+            <section>
+                <p>Next <b>bulbsToRender()</b> are filtered only to those bulbs that were choosed in checkboxes.</p>
+                <p><b>Promise.all()</b> is created based on choose bulbs.</p>
+                <p>After <b>Promise.all()</b> is resolved <b>promiseId</b> is checked with <b>currentPromiseId</b> and if it is the same then standard bulb rendering is made.</p>
+                <p>If not the same nothing happens (but catching errors) and Promise is 'canceled' from resolving.</p>
             </section>
         </section>
     </div>
