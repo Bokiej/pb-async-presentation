@@ -1,24 +1,16 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>Promise.race()</h2>
-            <p class="fst-italic">The <b>Promise.race()</b> method returns a promise that fulfills or rejects as soon as one of the promises in an iterable fulfills or rejects, with the value or reason from that promise.</p>
-            <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race" target="blank">mdn web docs</a>
-            </p>
-        </section>
         <section>
             <h3 class="pb-title">Promise.race()</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|3-5"></code>
                 </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-4-2')">2 go</button>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-4-5-1')">2 go</button>
             </section>
             <section>
-                <p>
-                    Promise race waits for fastest Promise to resolve / reject and returns it.
-                </p>
+                <p>If one of Promises in <b>Promise.race()</b> method throws error, it is shown only when this promise is the fastest one.</p>
+                <p>The easiest way to observe that is to wach LWC bulbs-app.</p>
             </section>
         </section>
     </div>
