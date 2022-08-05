@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import { vendorURL } from 'c/utility';
 
 export default class Bulb extends LightningElement {
     @api color;
@@ -10,6 +11,13 @@ export default class Bulb extends LightningElement {
     connectedCallback() {
         this.startTime = new Date().getTime();
         this.setBulbColor(this.color);
+
+        // vendorURL Promise form c/utility
+        vendorURL().then(url => {
+            console.log('bulb', url);
+        }).catch(error => {
+            showError({ context: this, error });
+        });
     }
 
     @api
