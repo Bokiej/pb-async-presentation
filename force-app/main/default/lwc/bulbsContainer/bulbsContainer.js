@@ -15,14 +15,12 @@ export default class BulbsContainer extends LightningElement {
             setBulbCounter(bulb)
         ).then(bulb => {
             showBulbNumber(bulb);
+        }).then(() => {
+            const number = this.template
+                .querySelector(`c-bulb[data-name=${this.YELLOW.name}]`)
+                .getBulbNumber();
 
-            Promise.resolve().then(() => {
-                const number = this.template
-                    .querySelector(`c-bulb[data-name=${this.YELLOW.name}]`)
-                    .getBulbNumber();
-        
-                console.log(`number of '${this.YELLOW.name}' bulb is: ${number}`);
-            });
+            console.log(`number of '${this.YELLOW.name}' bulb is: ${number}`);
         }).then(bulb => {}).catch(error => {
             showError({ context: this, error });
         });
