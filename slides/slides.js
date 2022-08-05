@@ -1,20 +1,23 @@
 const body = fetch('./slides/slides.html');
+const bulb = fetch('./force-app/main/default/lwc/bulb/bulb.js');
 const bulbsContainer = fetch('./force-app/main/default/lwc/bulbsContainer/bulbsContainer.js');
 const bulbsContainerHTML = fetch('./force-app/main/default/lwc/bulbsContainer/bulbsContainer.html');
 
 /*
  * Init method
  */
-Promise.all([body, bulbsContainer, bulbsContainerHTML]).then(([body, bulbsContainer, bulbsContainerHTML]) => {
-    return Promise.all([body.text(), bulbsContainer?.text(), bulbsContainerHTML?.text()]);
-}).then(([text, js, bulbsContainerHTML]) => {
+Promise.all([body, bulb, bulbsContainer, bulbsContainerHTML]).then(([body, bulb, bulbsContainer, bulbsContainerHTML]) => {
+    return Promise.all([body.text(), bulb?.text(), bulbsContainer?.text(), bulbsContainerHTML?.text()]);
+}).then(([text, bulb, js, bulbsContainerHTML]) => {
 	const html = new DOMParser().parseFromString(text, 'text/html');
     const bodyEl = document.querySelector('body');
+    const bulbFullArray = [ ...html.querySelectorAll('.bulb-full') ];
     const bulbsContainerFullArray = [ ...html.querySelectorAll('.bulbs-container-full') ];
     const bulbsContainerHTMLArray = [ ...html.querySelectorAll('.bulbs-container-html') ];
     const bulbsContainerJsArray = [ ...html.querySelectorAll('.bulbs-container-js') ];
     const promise = (/connectedCallback\(\).\{((.|[\r\n])*\;)\r\n.*\}/g.exec(js) || [])[1];
 
+    bulbFullArray.forEach(el => el.innerHTML = bulb);
     bulbsContainerJsArray.forEach(el => el.innerHTML = promise);
     bulbsContainerFullArray.forEach(el => el.innerHTML = js);
     bulbsContainerHTMLArray.forEach(el => el.innerHTML = bulbsContainerHTML);
