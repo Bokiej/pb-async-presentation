@@ -1,34 +1,35 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>Whats about @wire?</h2>
-            <p><b>@wire</b> is external asynhronous callback and while we are quering in connectedCallback or somewhere else we can't rely on <b>@wire</b> response.</p>
+        <section data-background-color="var(--pb-orange-cyan)">
+            <h2>Case study 1</h2>
+            <h3>know when <b>@wire</b> and Apex callback resolve then do something</h3>
+            <p>You can't use in such case Promise.all() etc. since @wire is independent. So how do it?</p>
         </section>
         <section>
-            <h3 class="pb-title">@wire</h3>
+            <h3 class="pb-title">bulbsContainer.html</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|4-5|5|28-43|4,14-26"></code>
+                    <code class="language-html bulbs-container-html" data-trim data-line-numbers="|2"></code>
                 </pre>
             </section>
             <section>
-                <p>In <b>bulbsComponent</b> are imported two asynchronous callbacks. One is js mokup <b>lightBulb</b> Apex like callback which were been used before and getBulb for <b>@wire</b> which returns light bulb simple object.</p>
-                <p>When bulbs-app runs it is easy to see that @wire and promises inside connectedCallback are execute separately.</p>
+                <p>To show when all of queries stop <b>c-loader</b> will be used. In such case standard lightning-spinner can be used too.</p>
+                <p>Common loader / spinner for different queries is a good example of used in everyday work.</p>
             </section>
         </section>
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>@wire is independent from other callbacks</h2>
-            <p><b>@wire</b> is external asynhronous callback and while we are quering in connectedCallback or somewhere else we can't rely on <b>@wire</b> response because we don't know when it will be resolved.</p>
-        </section>
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>When to use @wire</h2>
-            <ul>
-                <li>when we get simple cached data</li>
-                <li>when @wire attributes relays on single constantly changing value and must be refreshed. Then use '$valueName' string pattern.</li>
-                <li>get Salesforce object common data like <a href="https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.reference_wire_adapters_object_info" target="blank">getObjectInfo</a></li>
-            </ul>
-            <p>But seems like the last reason is most important.</p>
-            <button class="fragment pb-next" type="button" onclick="nextBranch('async-6-1-1')">2 go</button>
+        <section>
+            <h3 class="pb-title">bulbsContainer.js</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js bulbs-container-full" data-trim data-line-numbers="|14-15|33,55|34,56|19-21|17|60-67|64"></code>
+                </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-1')">2 go</button>
+            </section>
+            <section>
+                <p>To check if all queries were resolved it is necessary to create flags like in example above (<b>wireBulbResolved, otherBulbsResolved</b>) or check if data was retrived. Console logs will show when queries are done.</p>
+                <p>In such case <b>isLoading</b> must be getter since after every component rerender values of flags must be checked.</p>
+                <p>To show all numbers at once at the end on every rerender it s necessary to check if <b>isLoading</b> is done. It is good practice to use <b>isRendering</a> flag to do rendering only if necessary.</p>
+            </section>
         </section>
     </div>
 </div>
