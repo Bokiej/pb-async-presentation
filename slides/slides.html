@@ -1,19 +1,15 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-cyan)">
-            <h2>How force LWC to get data after HTML rerender</h2>
-            <p>How to change code from previous section to let it works.</p>
-        </section>
         <section>
             <h3 class="pb-title">bulbsContainer.js</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|10-16|16"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|10-16"></code>
                 </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-2')">2 go</button>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-4')">2 go</button>
             </section>
             <section>
-                <p>First method is to wrap code with <b>setTimeout</b> and set it milisecond to any value. To compute it immediately then value of it should be 0.</p>
+                <p>Second method is to use <b>Promise.resolve()</b> and immediatly use <b>then()</b> method with desired callback.</p>
                 <p>This force browser JavaScript Engine to wait until everything will be rerendered and invoke async method after that.</p>
                 <p>Now returned data in browser console is:</p>
                 <pre data-id="code-animation">
