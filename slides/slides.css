@@ -1,7 +1,14 @@
 :root {
     --pb-orange-color: #ffd54f;
+    --pb-orange-cyan: #B2EBF2;
+    --pb-orange-cyan-dark: #00ACC1;
     --r-heading-margin: 0 0 75px 0;
     --r-heading3-size: 55px;
+}
+
+.reveal a,
+.reveal .progress {
+    color: var(--pb-orange-cyan-dark);
 }
 
 .pb-title {
@@ -29,7 +36,7 @@
 button.pb-next {
     position: relative;
     border: 2px solid black;
-    background: var(--pb-orange-color);
+    background: var(--pb-orange-cyan);
     color: black;
     font-size: 20px;
     font-weight: bold;
@@ -38,7 +45,7 @@ button.pb-next {
 }
 
 button.pb-next:after {
-    content: 'next section';
+    content: 'home page';
     position: absolute;
     white-space: nowrap;
     left: calc(100% + 10px);

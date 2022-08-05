@@ -1,25 +1,40 @@
 <div class="reveal">
     <div class="slides">
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>It's impossible to predict the sequence</h2>
-            <p>When you query many endpoints at the same time you have to prepare to structure your results because you don't know in which order they will be returned.</p>
+        <section data-background-color="var(--pb-orange-cyan)">
+            <h2>Case study 4</h2>
+            <h3>singleton for Promise</h3>
+            <p>Somtimes we want to query endpoint once but share returned value with many components since returned value is always the same. In such case it is not recommended to query same endpoint many times.</p>
         </section>
         <section>
-            <h3 class="pb-title">Methods for many Promises</h3>
+            <h3 class="pb-title">utility.js</h3>
             <section data-auto-animate>
-                <p>We can handle many Promises at the same time with below methods:</p>
-                <ul>
-                    <li><b>Promise.all()</b></li>
-                    <li><b>Promise.allSettled()</b></li>
-                    <li><b>Promise.race()</b></li>
-                    <li><b>Promise.any()</b></li>
-                </ul>
-                <p>Every method will be described in next sections.</p>
-                <button class="fragment pb-next" type="button" onclick="nextBranch('async-4-2-1')">2 go</button>
+                <pre data-id="code-animation">
+                    <code class="language-js utility-full" data-trim data-line-numbers="|1-18|11-18|13"></code>
+                </pre>
             </section>
             <section>
-                <p>Checkout how works bulb-app LWC component to see how difficult is to predict order of Promises.</p>
+                <p>To create singleton in JavaSript create new file. In LWC it means creating separated common compoent. In this exaple this is <b>utility</b> component.</p>
+                <p>Inside <b>vendorURL</b> funcion always returns Promise but firstly check if promise exist previously in <b>_vendoURL</b> variable. if no it creates new one form Apex endpoint.</p>
+                <p>If promise exist in <b>_vendorURL</b> then will be returned in first place. It will be resolved only once and any time <b>then()</b> method will be invoked on it, it will be returning always previously resolved value with no addtional query.</p>
+                <p>console count will show that is invoked only once.</p>
             </section>
+        </section>
+        <section>
+            <h3 class="pb-title">bulb.js</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js bulb-js-full" data-trim data-line-numbers="|15-20|17"></code>
+                </pre>
+            </section>
+            <section>
+                <p>Inside <b>bulb.js</b> <b>vendorURL()</b> method wil return always the same Promise and it will return same resolved value.</p>
+                <p>Console log will show 56 returned values, each for any <b>bulb</b>. But still query were invoked only once what can be noticed in previous slide.</p>
+            </section>
+        </section>
+        <section data-background-color="var(--pb-orange-cyan)">
+            <h2>The End</h2>
+            <p>Thank you for your attention.</p>
+            <button class="fragment below pb-next" type="button" onclick="nextBranch('async-0-1-1')">2 go</button>
         </section>
     </div>
 </div>
