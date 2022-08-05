@@ -4,16 +4,16 @@
             <h3 class="pb-title">bulbsContainer.js</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|10-16"></code>
+                    <code class="language-js bulbs-container-js" data-trim data-line-numbers="|9-15"></code>
                 </pre>
-                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-2-4')">2 go</button>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-6-3-1')">2 go</button>
             </section>
             <section>
-                <p>Second method is to use <b>Promise.resolve()</b> and immediatly use <b>then()</b> method with desired callback.</p>
+                <p>Third method is to move new code to next <b>then()</b> method. This will create new Promise and invoke it after previous <b>then()</b> is done.</p>
                 <p>This force browser JavaScript Engine to wait until everything will be rerendered and invoke async method after that.</p>
                 <p>Now returned data in browser console is:</p>
                 <pre data-id="code-animation">
-                    <code class="language-puretext" data-trim>
+                    <code class="language-plaintext" data-trim>
                         number of 'yellow' bulb is: 1
                     </code>
                 </pre>
