@@ -24,4 +24,9 @@ export default class Bulb extends LightningElement {
     setBulbTime() {
         this.time = (new Date().getTime() - this.startTime) / 1000;
     }
+
+    @api
+    getBulbNumber() {
+        return this.template.querySelector('.number')?.innerHTML;
+    }
 }
