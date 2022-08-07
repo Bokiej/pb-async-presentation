@@ -5,6 +5,10 @@
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
+		<members>bulbController</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
 		<members>bulb</members>
 		<members>bulbsApp</members>
 		<members>error</members>
