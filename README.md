@@ -11,7 +11,7 @@
 5. Highly recomand to install lwc-dev-server SFDX plugin from https://www.npmjs.com/package/@salesforce/lwc-dev-server?activeTab=readme by writing in command line
 > sfdx plugins:install @salesforce/lwc-dev-server
 
-If error occures:
+If error occurs:
 
 > Check out https://github.com/nodejs/node-gyp#on-windows and install all necessary elements from 'On Windows' section or check error logs during instalation
 
@@ -25,4 +25,13 @@ You can start local server by choosing 'SFDX: Open Local Development Server' in 
 
 and go to the http://localhost:3333/
 
-# Agenda
+# RUN PRESENTATION
+
+To run presentation after installation write in command line:
+>npm start
+
+# RUN LOCAL DEVELOPMENT SERVER
+To run Local Development Server after installation use shortcut in command line by writing:
+>npm run serve
+
+and open localhost:3333
