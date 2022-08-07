@@ -1,0 +1,103 @@
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <img class="bulb" width="225px" height="225px" src="/slides/img/bulb_empty.svg"></img>
+            <div class="bulb-container animate__animated animate__wobble animate__slow animate__infinite">
+                <img class="bulb" width="225px" height="225px" src="/slides/img/bulb.svg"></img>
+                <div class="light"></div>
+            </div>
+            <img class="bulb" width="225px" height="225px" src="/slides/img/bulb_empty.svg"></img>
+            <img class="bulb" width="225px" height="225px" src="/slides/img/bulb_empty.svg"></img>
+            <div class="title">
+                <span class="js">JavaScript</span> for<br />
+                back-end devs 
+            </div>
+            <div class="title">
+                <div class="name">
+                    by Piotr Bokiej
+                </div>
+                <div class="logo">
+                    in <img width="90px" height="60px" src="/slides/img/salesforce_logo.svg"></img>
+                </div>
+            </div>
+        </section>
+        <section>
+            <section>
+                <div class="row">
+                    <div  class="col-3">   
+                        <div><img src="/slides/img/real_photo.png" alt="real photo" width="200px" height="280px"></div>
+                        <div>Piotr Bokiej</div>
+                    </div>
+                    <div class="col-9">
+                        <div class="pb-title" style="margin-bottom: 30px;">How it's made</div>
+                        <div>
+                            <div clss="row align-items-cente" style="display: flex; align-items:center;">
+                                <div class="col-3"><img src="/slides/img/reveal-white-text.svg" alt="reveal.js"></div>
+                                <div class="col-3"><img src="/slides/img/node-logo.svg" alt="node.js"></div>
+                                <div class="col-3"><img src="/slides/img/salesforce_logo.svg" alt="salesforce developers"></div>
+                                <div class="col-3"><img src="/slides/img/git-logo.png" alt="git"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p>footnotes:</p>
+                <ul>
+                    <li>reveal.js <a href="https://revealjs.com/">https://revealjs.com/</a></li>
+                    <li>node.js <a href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
+                    <li>Salesforce Local Development Server <a href="https://developer.salesforce.com/tools/vscode/en/localdev/set-up-lwc-local-dev">https://developer.salesforce.com/tools/vscode/en/localdev/set-up-lwc-local-dev</a></li>
+                    <li>GIT <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <div class="pb-title">How it works</div>
+            <p>Presentation is created no only to talk about slides but also for exloring and lerining it by yourself. Every section is separated git branch where are only necessary LWC components discussed at the time.</p>
+        </section>
+        <section>
+            <p>After clicking this button:</p>
+            <img src="/slides/img/next_button.png" alt="next button" height="53px">
+            <p>git branch will be automatically changed to next section and <b>all files</b> will be switched to only necessary one.</p>
+        </section>
+        <section>
+            <p>After installation everything like described in <b>README.md</b> in main directory you will have access to two node servers.</p>
+            <p>You run presentatnion by writing <b>npm start</b> in system console being in main project directory what will open in browser <b>localhost:8000</b>.</p>
+            <p>You run Local Development Server by writing <b>npm run serve</b> in system console being in main project directory and open in browser <b>localhost:3333</b>.</p>
+        </section>
+        <section>
+            <p>There are two servers, one for presentation and one for LWC local server.</p>
+            <div style="width: 600px; font-size: 25px; margin: auto;">
+                <div class="row">
+                    <div class="col">
+                        <div><b>node.js server</b></div>
+                        <div>npm strat</div>
+                        <div>localhost:8000</div>
+                    </div>
+                    <div class="col">
+                        <div><b>Salesforce Local Development Server</b></div>
+                        <div>npm run serve</div>
+                        <div>localhost:3333</div>
+                    </div>
+                </div>
+                <img src="/slides/img/browser_screen.png" height="300px" alt="browser screen">
+            </div>
+        </section>
+        <section>
+            <p>Every presentation section have its own structure you can watch by clicking Escape button.</p>
+            <img src="/slides/img/navigation_1.png" height="300px" alt="navigation structure">
+        </section>
+        <section>            
+            <p>While I will talking about presentation I will go only right (click right navigation arrow or right button in keyboard) [red square in screen].</p>
+            <img src="/slides/img/navigation_2.png" height="250px" alt="navigation structure">
+        </section>
+        <section>            
+            <p>But for your own learning explore slides by going down (click down arrow navigation or down button in keyboard) to lear more [orange square in screen].</p>
+            <img src="/slides/img/navigation_2.png" height="250px" alt="navigation structure">
+        </section>
+        <section>
+            <p>Enjoy and start</p>
+            <button class="pb-next" type="button" onclick="nextBranch('async-1-1-1')">2 go</button>
+        </section>
+    </div>
+</div>
