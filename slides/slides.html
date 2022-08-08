@@ -1,43 +1,80 @@
 <div class="reveal">
     <div class="slides">
         <section data-background-color="var(--pb-orange-color)">
-            <h2>How JavaScript Engine works?</h2>
-            <p class="fst-italic">A <b>Promise</b> is a proxy for a value not necessarily known when the promise is created. (...) instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.</p>
+            <h2>Promise.resolve() and Promise.reject()</h2>
+            <p class="fst-italic">The <b>Promise.resolve()</b> method "resolves" a given value to a Promise. If the value is a promise, that promise is returned; if the value is a thenable, <b>Promise.resolve()</b> will call the then() method with two callbacks it prepared; otherwise the returned promise will be fulfilled with the value.</p>
             <p class="text-end">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="blank">mdn web docs</a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve" target="blank">mdn web docs</a>
+            </p>
+            <p class="fst-italic">The Promise.reject() method returns a Promise object that is rejected with a given reason.</p>
+            <p class="text-end">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject" target="blank">mdn web docs</a>
             </p>
         </section>
         <section>
-            <h3 class="pb-title">Visualise how it works</h3>
+            <h3 class="pb-title">Promise.resolve()</h3>
             <section data-auto-animate>
-                <p>The easiest way to understand how JavaScript's call stack, event loop, callback queue interact with each other is to watch video of Philip Roberts and use his smart tool <a href="http://latentflip.com/loupe/" target="blank">Loupe</a> which visualise this in runtime.</p>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers>
+                        Promise.resolve('resolve value');
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    Sometimes in tests we have to immediately resolve Promise with a given data.
+                </p>
             </section>
         </section>
         <section>
-            <h3 class="pb-title">How to create a Primise?</h3>
+            <h3 class="pb-title">Promise.resolve()</h3>
             <section data-auto-animate>
                 <pre data-id="code-animation">
-                    <code class="language-js" data-trim data-line-numbers="2-6">
-                        const myPromise = new Promise((resolve, reject) => {
-                            // setTimeout is standard asynchronous method
-                            setTimeout(
-                                () => resolve('Resolved'),
-                                1000
-                            );
+                    <code class="language-js" data-trim data-line-numbers>
+                        Promise.resolve('resolve value').then(data => {
+                            console.log(data); // logs 'resolve value'
                         });
                     </code>
                 </pre>
             </section>
             <section>
                 <p>
-                    To sucessfully invoke promise it is necessary to just invoke <b>resolve()</b> method with desired data as an parametter. setTimeout in example It can be any type of data. In example it's 'Resolved' string.
+                    Promise.resolve() returns Promise and we can intercept data using then().
                 </p>
             </section>
         </section>
-        <section data-background-color="var(--pb-orange-color)">
-            <h2>How work creating Promises in Salesforce?</h2>
-            <p>In most cases there is no need to create Promises inside Salesforce LWC since imported Apex and @wire method are already Promises with correctly invoked resolve, reject methods.</p>
-            <button class="pb-next" type="button" onclick="nextBranch('async-3-1-1')">2 go</button>
+        <section>
+            <h3 class="pb-title">Promise.reject()</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers>
+                        Promise.reject(new Error('Error message'));
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    Sometimes in tests we have to immediately reject Promise with a given Error message.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3 class="pb-title">Promise.reject()</h3>
+            <section data-auto-animate>
+                <pre data-id="code-animation">
+                    <code class="language-js" data-trim data-line-numbers>
+                        Promise.reject(new Error('Error message')).catch(error => {
+                            console.error(error); // logs error
+                        });
+                    </code>
+                </pre>
+                <button class="fragment below pb-next" type="button" onclick="nextBranch('async-5-1-1')">2 go</button>
+            </section>
+            <section>
+                <p>
+                    Promise.reject() returns Promise and we can intercept error using catch().
+                </p>
+            </section>
         </section>
     </div>
 </div>
