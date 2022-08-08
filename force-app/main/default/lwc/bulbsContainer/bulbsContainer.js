@@ -11,8 +11,17 @@ export default class BulbsContainer extends LightningElement {
     BLUE = { name: 'blue', color: '#4FC3F7' };
     WIRE = { name: 'wire' };
 
+    wireBulbReady = false;
+    otherBulbsReady = false;
+
+    isRendered = false;
+
+    get isLoading() {
+        return !(this.wireBulbReady && this.otherBulbsReady);
+    }
+
     @wire(getBulb, {})
-    test({error, data}) {
+    getBulb({error, data}) {
         if (data) {
             this.wire = JSON.parse(data);
 
@@ -20,10 +29,12 @@ export default class BulbsContainer extends LightningElement {
 
             setBulbTime(bulb);
             setBulbCounter(bulb);
-            showBulbNumber(bulb);
+
+            console.log(`'${this.wire.name}' bulb is running`);
         } else if (error) {
             showError({ context: this, error });
         }
+        this.wireBulbReady = true;
     }
 
     connectedCallback() {
@@ -38,10 +49,20 @@ export default class BulbsContainer extends LightningElement {
             bulbs.map(bulb => setBulbTime(bulb))
         ).then(bulbs =>
             bulbs.map(bulb => setBulbCounter(bulb))
-        ).then(bulbs =>
-            bulbs.map(bulb => showBulbNumber(bulb))
         ).catch(error => {
             showError({ context: this, error });
+        }).finally(() => {
+            this.otherBulbsReady = true;
+            console.log(`other bulbs are running`);
         });
+    }
+
+    renderedCallback() {
+        if (!this.isLoading && !this.isRendered) {
+            setTimeout(() => {
+                showAllBulbNumbers({ context: this });
+                this.isRendered = true;
+            }, 2000);
+        }
     }
 }
