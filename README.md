@@ -1,3 +1,6 @@
+# What it is?
+It is an asynchronous JavaScript reveal.js presentation for Salesforce where each branch contains different files to explore examples by yourself.
+
 # Prerequisites
 
 1. Install node and npm from https://nodejs.org/en/download/
@@ -25,15 +28,16 @@ You can start local server by choosing 'SFDX: Open Local Development Server' in 
 
 and go to the http://localhost:3333/
 
-# RUN PRESENTATION
+# Run presentation
 
 To run presentation after installation write in command line:
 >npm start
 
-# RUN LOCAL DEVELOPMENT SERVER
+# Run Local Development Server
 To run Local Development Server after installation use shortcut in command line by writing:
 >npm run serve
-# SECTION BRANCHES
+# Section branches
+Simply change branch if you want to go to a specific section.
 
 | Branch             | Section name                                                               |
 |--------------------|----------------------------------------------------------------------------|
@@ -49,7 +53,7 @@ To run Local Development Server after installation use shortcut in command line 
 |async-3-3-4         |then(...,onReject) method                                                   |
 |async-3-4-1         |finally() method                                                            |
 |async-3-4-2         |How to use finally() and loader?                                            |
-|async-4-1-1         |t's impossible to predict the sequence                                      |
+|async-4-1-1         |It's impossible to predict the sequence                                     |
 |async-4-2-1         |Promise.all()                                                               |
 |async-4-2-2         |Promise.all() error                                                         |
 |async-4-2-3         |How refactor this code to be more modern JS?                                |
